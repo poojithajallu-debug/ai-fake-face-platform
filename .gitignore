@@ -9,4 +9,5 @@ reports/*
 mobile/**/build/
 mobile/**/.dart_tool/
 *.log
+.pytest_cache/
 .DS_Store
