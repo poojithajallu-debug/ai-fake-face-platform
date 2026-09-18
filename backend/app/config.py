@@ -1,5 +1,5 @@
 """
-Configuration settings for TrueFace Flask backend.
+Configuration settings for VeraFace Flask backend.
 Loads settings from environment variables with sensible defaults for development.
 """
 
@@ -23,4 +23,4 @@ class Config:
     PORT = int(os.getenv("FLASK_PORT", "5000"))
 
     # Human-readable application name
-    APP_NAME = os.getenv("FLASK_APP_NAME", "TrueFace Backend")
+    APP_NAME = os.getenv("FLASK_APP_NAME", "VeraFace Backend")

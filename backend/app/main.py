@@ -1,5 +1,5 @@
 """
-Flask application factory for TrueFace backend.
+Flask application factory for VeraFace backend.
 Initializes the Flask app, attaches configuration, and registers route blueprints.
 """
 
@@ -30,7 +30,7 @@ def create_app(config_class=Config):
     def root():
         """Root welcome endpoint providing basic API information."""
         return jsonify({
-            "message": "Welcome to TrueFace Backend API",
+            "message": "Welcome to VeraFace Backend API",
             "version": "1.0.0",
             "health_check": "/health",
             "endpoints": {

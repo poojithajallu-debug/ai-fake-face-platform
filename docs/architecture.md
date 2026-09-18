@@ -1,7 +1,7 @@
 # System Architecture & Technical Specification
 
 ## Project: AI Fake Face Detection and Trust Verification Platform
-**Mobile Application**: TrueFace  
+**Mobile Application**: VeraFace  
 **Academic Context**: B.Tech Final-Year EPICS Capstone Project  
 **Document Version**: 1.0 (Phase 0 Baseline)
 
@@ -9,11 +9,11 @@
 
 ## 1. System Overview
 
-The **AI Fake Face Detection and Trust Verification Platform** is designed as a client-server distributed system. The user interacts through a modern mobile application (**TrueFace**), while compute-heavy deep learning inference, explainability generation, and report compilation run on a containerized or virtualized Python/Flask backend.
+The **AI Fake Face Detection and Trust Verification Platform** is designed as a client-server distributed system. The user interacts through a modern mobile application (**VeraFace**), while compute-heavy deep learning inference, explainability generation, and report compilation run on a containerized or virtualized Python/Flask backend.
 
 ```text
 ┌────────────────────────────────────────────────────────┐
-│               TrueFace Mobile App (Flutter)            │
+│               VeraFace Mobile App (Flutter)            │
 │  [Camera / Gallery] ──► [Preview] ──► [Results / XAI]  │
 └───────────────────────────┬────────────────────────────┘
                             │  HTTPS / REST (JSON + Multipart)
@@ -38,7 +38,7 @@ The **AI Fake Face Detection and Trust Verification Platform** is designed as a 
 ```
 
 ### End-to-End Workflow:
-1. **Acquisition**: The user captures a photo via device camera or selects an existing portrait from the gallery in **TrueFace**.
+1. **Acquisition**: The user captures a photo via device camera or selects an existing portrait from the gallery in **VeraFace**.
 2. **Transmission**: The app packages the image file into a `multipart/form-data` HTTP POST request to the `/api/predict` endpoint.
 3. **Ingestion & Validation**: The Flask server checks MIME type, payload size (up to 10 MB), and saves the image to a temporary UUID-keyed storage path.
 4. **AI Inference & Explanation**:
@@ -47,7 +47,7 @@ The **AI Fake Face Detection and Trust Verification Platform** is designed as a 
    - A multi-factor Trust Score is computed.
    - Heatmaps (Grad-CAM) and perturbation masks (LIME) are rendered.
 5. **Response Delivery**: The server returns a structured JSON payload containing the classification (`Real` or `Fake`), confidence percentage, trust score, base64/URL links to heatmaps, and a report generation ID.
-6. **Presentation**: TrueFace renders the results on an intuitive verdict screen with visual interactive explanation overlays and an option to download the PDF report.
+6. **Presentation**: VeraFace renders the results on an intuitive verdict screen with visual interactive explanation overlays and an option to download the PDF report.
 
 ---
 
@@ -161,7 +161,7 @@ To satisfy B.Tech evaluation standards for interpretable AI, predictions are acc
 - **Output**: Visual segment highlights showing positive evidence (supporting the verdict) and negative evidence (contradicting the verdict).
 
 ### Mobile Visualization:
-TrueFace displays an interactive toggle slider allowing users to slide between the raw image, Grad-CAM heatmap, and LIME superpixel boundaries, complete with an explanation legend.
+VeraFace displays an interactive toggle slider allowing users to slide between the raw image, Grad-CAM heatmap, and LIME superpixel boundaries, complete with an explanation legend.
 
 ---
 
@@ -212,9 +212,9 @@ The backend is built with Python 3.10 and Flask. It includes a decoupled configu
 
 ---
 
-## 7. TrueFace Mobile Application Overview
+## 7. VeraFace Mobile Application Overview
 
-TrueFace is an Android-first mobile application written in Flutter (Dart), engineered with clean architecture principles.
+VeraFace is an Android-first mobile application written in Flutter (Dart), engineered with clean architecture principles.
 
 ### Key Screens & User Journey:
 1. **Splash Screen**: App branding, system initialization, backend connectivity check.
@@ -235,4 +235,4 @@ TrueFace is an Android-first mobile application written in Flutter (Dart), engin
 - **Ephemeral Storage**: Uploaded images are stored in a dedicated `uploads/` directory with automatic TTL cleanup after 1 hour. No biometric face templates are retained permanently on the server.
 - **Input Validation**: Strict MIME inspection (JPEG, PNG only) and 10 MB payload limits to prevent buffer overrun or arbitrary file uploads.
 - **Rate Limiting**: Flask-Limiter integration preventing automated abuse (e.g., maximum 30 requests/minute per IP).
-- **Data Protection**: Clear privacy policy and disclaimer inside the TrueFace app highlighting that images are processed strictly for real-time verification.
+- **Data Protection**: Clear privacy policy and disclaimer inside the VeraFace app highlighting that images are processed strictly for real-time verification.

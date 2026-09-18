@@ -1,5 +1,5 @@
 """
-Development server runner for TrueFace Flask backend.
+Development server runner for VeraFace Flask backend.
 Usage:
     python run.py
 """

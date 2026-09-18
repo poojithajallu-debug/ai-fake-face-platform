@@ -1,11 +1,11 @@
-# AI Fake Face Detection and Trust Verification Platform (TrueFace)
+# AI Fake Face Detection and Trust Verification Platform (VeraFace)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B.svg)](https://flutter.dev/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.x-EE4C2C.svg)](https://pytorch.org/)
 
-An end-to-end deepfake detection and reliability assessment system comprising a hybrid CNN–Transformer deep learning backend and a user-friendly mobile application named **TrueFace**.
+An end-to-end deepfake detection and reliability assessment system comprising a hybrid CNN–Transformer deep learning backend and a user-friendly mobile application named **VeraFace**.
 
 ---
 
@@ -29,14 +29,14 @@ There is a critical academic and societal need for an accessible, explainable, a
 3. **Trust Score Formulation**: Compute a project-defined composite reliability indicator combining calibrated confidence, face image quality, and prediction stability.
 4. **Visual Explainability**: Generate visual attribution maps via Grad-CAM (convolutional feature localization) and LIME (interpretable superpixel perturbations).
 5. **Automated Verification Reports**: Synthesize classification verdicts, confidence, trust metrics, and visual explanations into downloadable/exportable verification reports (PDF).
-6. **Intuitive Mobile Experience (TrueFace)**: Deliver a responsive, Android-first Flutter application allowing users to capture/upload faces, inspect explanations, and maintain scan histories.
+6. **Intuitive Mobile Experience (VeraFace)**: Deliver a responsive, Android-first Flutter application allowing users to capture/upload faces, inspect explanations, and maintain scan histories.
 
 ---
 
 ## 🏗️ High-Level System Architecture
 
 ```text
-  TrueFace (Flutter Mobile App)
+  VeraFace (Flutter Mobile App)
             │
             ▼ HTTPS / HTTP (REST API)
   Flask REST API (Python)
@@ -67,7 +67,7 @@ The system is decoupled into two independent layers:
 - **Explainability**: `pytorch-grad-cam`, `lime`
 - **Document Generation**: ReportLab / FPDF2
 
-### Mobile Client (TrueFace)
+### Mobile Client (VeraFace)
 - **Framework**: Flutter (Dart) targeting Android (first-class) & cross-platform
 - **Networking**: `http` package with standard REST contracts
 - **Image Handling**: `image_picker` for camera and gallery integration
@@ -105,7 +105,7 @@ ai-fake-face-platform/
 │   ├── reports/              # Generated PDF verification reports
 │   └── tests/                # Automated backend unit and integration tests
 │
-├── mobile/                   # TrueFace Flutter mobile application
+├── mobile/                   # VeraFace Flutter mobile application
 │
 ├── model_training/           # Deep learning model development & training
 │   ├── datasets/             # Dataset loaders, manifests, and scripts
@@ -134,5 +134,5 @@ ai-fake-face-platform/
 
 Developed as a **B.Tech Final-Year EPICS (Engineering Projects in Community Service)** Capstone Project.
 - **Project Title**: AI Fake Face Detection and Trust Verification Platform
-- **Application Name**: TrueFace
+- **Application Name**: VeraFace
 - **Target Audience**: Students, researchers, digital forensics investigators, and academic examiners.

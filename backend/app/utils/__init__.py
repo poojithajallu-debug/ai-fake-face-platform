@@ -1,3 +1,3 @@
 """
-Utility functions and helpers for TrueFace backend (image processing, validation, formatting).
+Utility functions and helpers for VeraFace backend (image processing, validation, formatting).
 """

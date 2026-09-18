@@ -1,6 +1,6 @@
-# TrueFace Backend – Phase 2
+# VeraFace Backend – Phase 2
 
-Minimal, modular, and runnable Flask backend for the **AI Fake Face Detection and Trust Verification Platform (TrueFace)**.  
+Minimal, modular, and runnable Flask backend for the **AI Fake Face Detection and Trust Verification Platform (VeraFace)**.  
 Includes service health monitoring and a mock inference endpoint (`/api/predict`) operating in **DEMO/MOCK mode**.
 
 ---
@@ -67,7 +67,7 @@ curl http://127.0.0.1:5000/health
 **Response**:
 ```json
 {
-  "app": "TrueFace Backend",
+  "app": "VeraFace Backend",
   "model_loaded": false,
   "status": "ok"
 }

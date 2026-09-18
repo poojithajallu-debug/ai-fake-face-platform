@@ -1,5 +1,5 @@
 """
-TrueFace Backend Application Package.
+VeraFace Backend Application Package.
 Exposes the application factory function create_app.
 """
 

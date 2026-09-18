@@ -1,5 +1,5 @@
 """
-Unit test for TrueFace Flask backend health endpoint.
+Unit test for VeraFace Flask backend health endpoint.
 """
 
 from app import create_app
@@ -17,7 +17,7 @@ def test_health_endpoint():
         data = response.get_json()
         assert data is not None
         assert data["status"] == "ok"
-        assert data["app"] == "TrueFace Backend"
+        assert data["app"] == "VeraFace Backend"
         assert data["model_loaded"] is False
 
 
@@ -32,5 +32,5 @@ def test_root_endpoint():
 
         data = response.get_json()
         assert data is not None
-        assert "Welcome to TrueFace Backend API" in data["message"]
+        assert "Welcome to VeraFace Backend API" in data["message"]
         assert data["health_check"] == "/health"

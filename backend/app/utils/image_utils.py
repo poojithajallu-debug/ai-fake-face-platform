@@ -1,5 +1,5 @@
 """
-Image utility functions for TrueFace backend.
+Image utility functions for VeraFace backend.
 Provides upload validation, MIME checking, size bounds, and OpenCV decoding.
 """
 

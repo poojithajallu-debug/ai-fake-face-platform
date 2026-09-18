@@ -1,5 +1,5 @@
 """
-Mock AI Inference Service for TrueFace backend (Phase 2 DEMO/MOCK mode).
+Mock AI Inference Service for VeraFace backend (Phase 2 DEMO/MOCK mode).
 Provides deterministic, reproducible fake predictions, confidence/trust calculations,
 and synthetic Grad-CAM & LIME explanation placeholders.
 """

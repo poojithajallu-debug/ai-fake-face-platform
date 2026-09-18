@@ -1,3 +1,3 @@
 """
-API routes package for TrueFace backend.
+API routes package for VeraFace backend.
 """

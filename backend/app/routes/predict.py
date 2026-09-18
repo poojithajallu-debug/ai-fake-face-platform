@@ -1,5 +1,5 @@
 """
-Prediction route blueprint for TrueFace backend.
+Prediction route blueprint for VeraFace backend.
 Exposes POST /api/predict accepting multipart/form-data image uploads.
 """
 

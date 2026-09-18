@@ -1,3 +1,3 @@
 """
-Services package for TrueFace backend (mock inference, model inference, and report generation).
+Services package for VeraFace backend (mock inference, model inference, and report generation).
 """
