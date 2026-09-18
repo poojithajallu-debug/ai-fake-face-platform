@@ -50,7 +50,8 @@ def test_predict_valid_png(client):
     assert 0.0 <= json_data["confidence_score"] <= 100.0
     assert 0.0 <= json_data["trust_score"] <= 100.0
     assert json_data["verification_id"].startswith("v_")
-    assert "Mock" in json_data["message"]
+    assert "VeraFace" in json_data["message"]
+    assert "mock" in json_data["message"].lower()
     assert any("Mock" in w for w in json_data["warnings"])
     assert json_data["gradcam_image"].startswith("data:image/png;base64,")
     assert json_data["lime_image"].startswith("data:image/png;base64,")

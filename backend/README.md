@@ -75,7 +75,7 @@ curl http://127.0.0.1:5000/health
 
 ---
 
-### 2. Mock Inference (`POST /api/predict`)
+### 2. POST /api/predict (Mock Inference – VeraFace)
 
 Accepts an image upload in `multipart/form-data` format and returns a complete, schema-compliant verification result.
 
@@ -101,7 +101,7 @@ Invoke-RestMethod -Uri "http://127.0.0.1:5000/api/predict" -Method Post -Form $f
   "fake_probability": 0.88,
   "confidence_score": 88.0,
   "trust_score": 84.2,
-  "message": "Mock prediction (DEMO mode). Not a real AI detection.",
+  "message": "VeraFace mock prediction (DEMO mode). Not a real AI detection.",
   "gradcam_image": "data:image/png;base64,iVBORw0KGgo...",
   "lime_image": "data:image/png;base64,iVBORw0KGgo...",
   "face_detected": true,

@@ -66,7 +66,7 @@ def predict():
         "fake_probability": mock_result["fake_probability"],
         "confidence_score": mock_result["confidence_score"],
         "trust_score": mock_result["trust_score"],
-        "message": "Mock prediction (DEMO mode). Not a real AI detection.",
+        "message": "VeraFace mock prediction (DEMO mode). Not a real AI detection.",
         "gradcam_image": mock_result["gradcam_image"],
         "lime_image": mock_result["lime_image"],
         "face_detected": mock_result["face_detected"],
