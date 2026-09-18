@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.env
+venv/
+uploads/*
+!uploads/.gitkeep
+reports/*
+!reports/.gitkeep
+mobile/**/build/
+mobile/**/.dart_tool/
+*.log
+.DS_Store
