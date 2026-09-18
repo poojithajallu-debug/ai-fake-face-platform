@@ -1,22 +1,25 @@
-# TrueFace Backend – Phase 1
+# TrueFace Backend – Phase 2
 
-Minimal and modular Flask backend skeleton exposing a `/health` endpoint for the **AI Fake Face Detection and Trust Verification Platform (TrueFace)**.
+Minimal, modular, and runnable Flask backend for the **AI Fake Face Detection and Trust Verification Platform (TrueFace)**.  
+Includes service health monitoring and a mock inference endpoint (`/api/predict`) operating in **DEMO/MOCK mode**.
 
 ---
 
 ## 🚀 Overview
 
-Phase 1 provides:
-- Application factory pattern (`create_app`) in `app/main.py`.
-- Centralized configuration with environment variable support in `app/config.py`.
-- Modular route blueprint structure (`app/routes/health.py`).
-- Development server entrypoint (`run.py`).
+Phase 2 capabilities:
+- **Application Factory**: Pattern (`create_app`) in `app/main.py`.
+- **Health Check**: `GET /health` endpoint verifying service liveness.
+- **Mock Inference API**: `POST /api/predict` handling `multipart/form-data` uploads.
+- **Image Validation**: Size bounds (<= 5 MB), MIME inspection (JPEG/PNG), and file integrity verification.
+- **Deterministic Mock Model**: Computes reproducible real/fake probabilities, confidence scores, and heuristic trust scores based on image features.
+- **Visual Explainability Placeholders**: Synthetic base64 PNG data URIs for Grad-CAM heatmaps and LIME superpixel segmentations.
 
 ---
 
 ## 🛠️ Setup & Running (Windows PowerShell)
 
-Follow these steps from the root of the project:
+Follow these steps from the project root:
 
 ### 1. Navigate to the backend directory
 ```powershell
@@ -45,30 +48,75 @@ copy .env.example .env
 python run.py
 ```
 
+### 6. Run automated test suite
+```powershell
+pytest
+```
+
 ---
 
-## 🔍 Expected Behavior & Verification
+## 🔍 API Endpoints & Usage
 
-Once started, the Flask server will listen on `http://127.0.0.1:5000`.
+Once started, the Flask server listens on `http://127.0.0.1:5000`.
 
-### Health Check Endpoint
-Send an HTTP GET request to verify the service status:
-
+### 1. Health Check (`GET /health`)
 ```powershell
 curl http://127.0.0.1:5000/health
 ```
 
-Or in PowerShell:
-```powershell
-Invoke-RestMethod -Uri http://127.0.0.1:5000/health
-```
-
-### Expected Response:
+**Response**:
 ```json
 {
   "app": "TrueFace Backend",
   "model_loaded": false,
   "status": "ok"
+}
+```
+
+---
+
+### 2. Mock Inference (`POST /api/predict`)
+
+Accepts an image upload in `multipart/form-data` format and returns a complete, schema-compliant verification result.
+
+#### Request Example (cURL):
+```powershell
+curl -X POST http://127.0.0.1:5000/api/predict -F "image=@sample_face.png"
+```
+
+#### Request Example (PowerShell):
+```powershell
+$form = @{ image = Get-Item "path\to\sample_face.png" }
+Invoke-RestMethod -Uri "http://127.0.0.1:5000/api/predict" -Method Post -Form $form
+```
+
+#### Successful Response (HTTP 200):
+```json
+{
+  "success": true,
+  "verification_id": "v_1726656000_3a4b5c",
+  "timestamp": "2026-09-18T10:45:00.000000+00:00",
+  "prediction": "Fake",
+  "real_probability": 0.12,
+  "fake_probability": 0.88,
+  "confidence_score": 88.0,
+  "trust_score": 84.2,
+  "message": "Mock prediction (DEMO mode). Not a real AI detection.",
+  "gradcam_image": "data:image/png;base64,iVBORw0KGgo...",
+  "lime_image": "data:image/png;base64,iVBORw0KGgo...",
+  "face_detected": true,
+  "faces_count": 1,
+  "warnings": [
+    "Mock inference (DEMO mode)"
+  ]
+}
+```
+
+#### Validation Error Response (HTTP 400):
+```json
+{
+  "success": false,
+  "error": "Unsupported file extension. Allowed extensions: .jpg, .jpeg, .png."
 }
 ```
 
@@ -82,14 +130,24 @@ backend/
 │   ├── __init__.py         # Package init exposing create_app
 │   ├── main.py             # Flask application factory
 │   ├── config.py           # Configuration settings
-│   └── routes/             # Blueprint routes
+│   ├── routes/             # Blueprint routes
+│   │   ├── __init__.py
+│   │   ├── health.py       # Health check route (/health)
+│   │   └── predict.py      # Face prediction route (/api/predict)
+│   ├── services/           # Service layer
+│   │   ├── __init__.py
+│   │   └── inference_mock.py # Mock AI prediction & XAI generation
+│   └── utils/              # Helper utilities
 │       ├── __init__.py
-│       └── health.py       # Health check route (/health)
-├── model/                  # AI model checkpoints & definitions (Phase 2+)
+│       └── image_utils.py  # Image validation & decoding
+├── model/                  # AI model weights (Phase 3+)
 ├── uploads/                # Ephemeral image upload directory
 ├── reports/                # Generated verification reports
-├── tests/                  # Automated test cases
-├── requirements.txt        # Python package dependencies
+├── tests/                  # Automated test suite
+│   ├── test_health.py      # Health endpoint tests
+│   └── test_predict_mock.py# Prediction endpoint tests
+├── requirements.txt        # Python dependencies
+├── pytest.ini              # Pytest configuration
 ├── run.py                  # Local dev server entrypoint
 ├── .env.example            # Environment variables template
 └── README.md               # Backend documentation and run instructions

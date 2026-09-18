@@ -6,6 +6,7 @@ Initializes the Flask app, attaches configuration, and registers route blueprint
 from flask import Flask, jsonify
 from .config import Config
 from .routes.health import health_bp
+from .routes.predict import predict_bp
 
 
 def create_app(config_class=Config):
@@ -23,6 +24,7 @@ def create_app(config_class=Config):
 
     # Register route blueprints
     app.register_blueprint(health_bp, url_prefix="")
+    app.register_blueprint(predict_bp, url_prefix="/api")
 
     @app.route("/", methods=["GET"])
     def root():
@@ -30,7 +32,11 @@ def create_app(config_class=Config):
         return jsonify({
             "message": "Welcome to TrueFace Backend API",
             "version": "1.0.0",
-            "health_check": "/health"
+            "health_check": "/health",
+            "endpoints": {
+                "health": "/health",
+                "predict": "/api/predict"
+            }
         })
 
     return app
